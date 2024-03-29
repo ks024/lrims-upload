@@ -2,7 +2,10 @@ import os
 import shutil
 import argparse
 
-def move_file(source_dir, dest_dir):
+def move_file(params):
+    source_dir = params.source_dir
+    dest_dir = params.dest_dir
+
     # Creating destination dir if not exists
     if not os.path.exists(dest_dir):
         os.makedirs(dest_dir)
@@ -38,9 +41,9 @@ def move_file(source_dir, dest_dir):
 if __name__ == "__main__":
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description='Move files from a source directory to a destination directory.')
-    parser.add_argument('source_dir', type=str, help='Path to the source directory')
-    parser.add_argument('dest_dir', type=str, help='Path to the destination directory')
+    parser.add_argument('--source_dir', type=str, help='Path to the source directory')
+    parser.add_argument('--dest_dir', type=str, help='Path to the destination directory')
     args = parser.parse_args()
 
     # Call the move_file function with the parsed arguments
-    move_file(args.source_dir, args.dest_dir)
+    move_file(args)
